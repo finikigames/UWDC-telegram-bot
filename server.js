@@ -2,8 +2,11 @@ var url = require("url");
 var botgram = require("botgram");
 var express = require("express");
 
+const port = process.env.PORT || 8080;
+const token = process.env.TOKEN;
+
 var gameName = "trex";
-var bot = botgram(process.argv[2]);
+var bot = botgram(token);
 var server = express();
 
 var queries = {};
@@ -30,7 +33,7 @@ server.get("/telegramBot/index.html", function (req, res, next) {
   res.sendFile(__dirname + "/index.html");
 });
 
-server.listen(8080, function () {
+server.listen(port, function () {
   bot.ready(function () {
     console.log("To play, send /game or use the following link to play:\n");
     console.log("  %s\n", bot.linkGame(gameName));
