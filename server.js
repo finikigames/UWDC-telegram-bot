@@ -4,8 +4,9 @@ var express = require("express");
 
 const port = process.env.PORT || 8080;
 const token = process.env.TOKEN;
+const gameUrl = process.env.GAME_URL;
+const gameName = process.env.GAME_NAME;
 
-var gameName = "trex";
 var bot = botgram(token);
 var server = express();
 
@@ -23,7 +24,7 @@ bot.callback(function (query, next) {
   if (query.gameShortName !== gameName) return next();
   queries[query.id] = query;
   query.answer({
-    url: "https://telegram-emias-new-year-game.onrender.com"
+    url: gameUrl
   });
 });
 
