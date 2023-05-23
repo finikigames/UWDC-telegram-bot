@@ -1,44 +1,45 @@
-var url = require("url");
-var botgram = require("botgram");
-var express = require("express");
-
-const port = process.env.PORT || 8080;
 const token = process.env.TOKEN;
 const gameUrl = process.env.GAME_URL;
 const gameName = process.env.GAME_NAME;
 
-var bot = botgram(token);
-var server = express();
+const queries = {};
 
-var queries = {};
+const TelegramApi = require('node-telegram-bot-api')
+const bot = new TelegramApi(token, {polling: true})
 
-bot.command("help", function (msg, reply, next) {
-  reply.text("This bot implements a dumb minigame. Say /game if you want to play.");
-});
+const start = () => {
+    bot.setMyCommands( [
+        {command: '/start', description: 'Приветствие'},
+        {command: '/game', description: 'Отобразить игру'},
+    ])
 
-bot.command("start", "game", function (msg, reply, next) {
-  reply.game(gameName);
-});
+    bot.on('message', function(msg, reply, next) {
+        const text = msg.text;
+        const chatId = msg.chat.id;
+        if (text === '/start') {
+            return bot.sendMessage(chatId, `Добро пожаловать, данный бот позволяет вам поиграть в 'Поддавки' с другими игроками`)
+        }
 
-bot.callback(function (query, next) {
-  if (query.gameShortName !== gameName) return next();
-  queries[query.id] = query;
-  query.answer({
-    url: gameUrl
-  });
-});
+        if (text === '/game') {
+            bot.sendMessage(chatId, `Удачи в игре, если ты выиграешь в рейтинге, то получишь приз!`);
+            return bot.sendGame(msg.from.id, gameName);
+        }
 
-server.get("/telegramBot/index.html", function (req, res, next) {
-  if (!Object.hasOwnProperty.call(queries, req.query.id)) return next();
-  console.log("Serving game to %s...", queries[req.query.id].from.name);
-  res.sendFile(__dirname + "/index.html");
-});
+        return bot.sendMessage(chatId, 'Если ты хочешь поиграть, напиши /game')
+    })
 
-server.listen(port, function () {
-  bot.ready(function () {
-    console.log("To play, send /game or use the following link to play:\n");
-    console.log("  %s\n", bot.linkGame(gameName));
-  });
-});
+    bot.on('callback_query', msg => {
+      queries[msg.id] = msg;
+        const chatId = msg.message.chat.id;
+        
+        console.log(msg.data);
+        bot.sendMessage(chatId, `Да прибудет с тобой сила`);
+        
+        let gameurl = gameUrl+"/index.html?id="+msg.id+"?first_name="+msg.from.first_name+"?last_name="+msg.from.last_name+"?username="+msg.from.username;
+        console.log(gameurl);
+        
+        bot.answerCallbackQuery(msg.id, {url: gameurl});
+    })
+}
 
-// FIXME: use getGameHighScores and display them on game too
+start()

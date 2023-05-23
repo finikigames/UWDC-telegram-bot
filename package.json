@@ -5,7 +5,6 @@
   "keywords": [
     "telegram",
     "bot",
-    "botgram",
     "game",
     "particle",
     "explode"
@@ -13,8 +12,8 @@
   "description": "Particle Explode Telegram game",
   "homepage": "https://github.com/botgram/explode-game-bot",
   "dependencies": {
-    "botgram": "2",
-    "express": "^4.5"
+    "node-telegram-bot-api": "^0.61.0",
+    "nodemon": "^2.0.22"
   },
   "bugs": {
     "url": "https://github.com/botgram/explode-game-bot/issues"
