@@ -35,7 +35,7 @@ const start = () => {
         console.log(msg.data);
         bot.sendMessage(chatId, `Да прибудет с тобой сила`);
         
-        let gameurl = gameUrl+"/index.html&id="+msg.id+"&first_name="+msg.from.first_name+"&last_name="+msg.from.last_name+"&username="+msg.from.username;
+        let gameurl = gameUrl+"/index.html?id="+msg.id+"&first_name="+msg.from.first_name+"&last_name="+msg.from.last_name+"&username="+msg.from.username;
         console.log(gameurl);
         
         bot.answerCallbackQuery(msg.id, {url: gameurl});
