@@ -1,10 +1,7 @@
 FROM node:alpine
 
 RUN apk add git
-# Create app directory
-RUN git pull
 
-WORKDIR /home/admin/uwdc
 # Install app dependencies
 # A wildcard is used to ensure both package.json AND package-lock.json are copi>
 # where available (npm@5+)
