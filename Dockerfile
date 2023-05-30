@@ -2,7 +2,7 @@ FROM node:alpine
 
 RUN apk add git
 # Create app directory
-RUN git clone https://github.com/antontidev/emias-telegram-bot.git /home/admin/>
+RUN git pull
 
 WORKDIR /home/admin/uwdc
 # Install app dependencies
