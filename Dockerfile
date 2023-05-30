@@ -6,8 +6,8 @@ RUN apk add git
 # A wildcard is used to ensure both package.json AND package-lock.json are copi>
 # where available (npm@5+)
 
-COPY emias-telegram-bot/package*.json ./
-COPY emias-telegram-bot/server*.js ./
+COPY package*.json ./
+COPY server*.js ./
 
 RUN npm install
 # If you are building your code for production
