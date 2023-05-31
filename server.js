@@ -34,8 +34,11 @@ const start = () => {
         
         console.log(msg.data);
         bot.sendMessage(chatId, `Да прибудет с тобой сила`);
+
+        let formatedName = msg.from.first_name.replace(/\s/g, '');
+        let formatedLastName = msg.from.last_name.replace(/\s/g, '');
         
-        let gameurl = gameUrl+"index.html?id="+msg.from.id+"0000"+"&first_name="+msg.from.first_name+"&last_name="+msg.from.last_name+"&username="+msg.from.username;
+        let gameurl = gameUrl+"index.html?id="+msg.from.id+"0000"+"&first_name="+formatedName+"&last_name="+formatedLastName+"&username="+msg.from.username;
         console.log(gameurl);
         
         bot.answerCallbackQuery(msg.id, {url: gameurl});
