@@ -64,7 +64,7 @@ const start = () => {
         let gameurl = gameUrl+"index.html?id="+msg.from.id+"0000"+"&first_name="+formatedName+"&last_name="+formatedLastName+"&username="+msg.from.username;
         console.log(gameurl);
         
-        if (data === '/iosLink') {
+        if (msg.data === '/iosLink') {
             bot.sendMessage(chatId, {url: gameurl});
             return bot.sendMessage(chatId, gameurl);
         }
