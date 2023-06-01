@@ -10,7 +10,7 @@ const bot = new TelegramApi(token, {polling: true})
 const GameStraightUrl = {
     reply_markup: JSON.stringify( {
         inline_keyboard: [
-            [{text: 'Прямая сыллка(для IOS)', callback_data: '/iosLink'}],
+            [{text: 'Прямая сыллка(для IOS)', callback_data: [Ссылка]('/iosLink')}],
         ]
     })
 }
