@@ -10,7 +10,7 @@ const bot = new TelegramApi(token, {polling: true})
 const GameStraightUrl = {
     reply_markup: JSON.stringify( {
         inline_keyboard: [
-            [{text: 'Прямая сыллка(для IOS)', callback_data: [Ссылка]('/iosLink')}],
+            [{text: 'Прямая сыллка(для IOS)', callback_data: '/iosLink'}],
         ]
     })
 }
@@ -84,7 +84,7 @@ const start = () => {
         console.log(gameurl);
         
         if (msg.data === '/iosLink') {
-            return bot.sendMessage(chatId, gameurl);
+            return bot.sendMessage(chatId, '[Ссылка](gameurl)');
         }
 
         bot.answerCallbackQuery(msg.id, {url: gameurl});
