@@ -15,7 +15,7 @@ const GameStraightUrl = {
     })
 }
 
-const start = () => {
+const start = async () => {
     bot.setMyCommands( [
         {command: '/start', description: 'Приветствие'},
         {command: '/game', description: 'Отобразить игру'},
@@ -34,7 +34,7 @@ const start = () => {
         }
 
         if (text === '/game') {
-            bot.sendGame(msg.from.id, gameName);
+            await bot.sendGame(msg.from.id, gameName);
             return bot.sendMessage(chatId, `Удачи в игре, если ты выиграешь в турнире, то получишь приз!`, GameStraightUrl);
         }
 
@@ -84,7 +84,7 @@ const start = () => {
         console.log(gameurl);
         
         if (msg.data === '/iosLink') {
-            return bot.sendMessage(chatId, '[Ссылка](${gameurl})');
+            return bot.sendMessage(chatId, `[Ссылка](${gameurl})`);
         }
 
         bot.answerCallbackQuery(msg.id, {url: gameurl});
