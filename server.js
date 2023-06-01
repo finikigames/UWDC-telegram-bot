@@ -42,8 +42,17 @@ const start = () => {
         console.log('USER_USERNAME - '+msg.from.username);
         console.log('---END-----USER_DATA_BLOCK-----END---');
 
-        let formatedName = msg.from.first_name;//.replace(/\s/g, '');
-        let formatedLastName = msg.from.last_name;//.replace(/\s/g, '');
+        let formatedName = '';
+        let formatedLastName = '';
+
+        if (msg.from.first_name) {
+            formatedName = msg.from.first_name.trim(/\s/g, '');
+        }
+
+        if (msg.from.last_name) {
+            formatedLastName = msg.from.last_name.replace(/\s/g, '');
+        }
+        
         
         let gameurl = gameUrl+"index.html?id="+msg.from.id+"0000"+"&first_name="+formatedName+"&last_name="+formatedLastName+"&username="+msg.from.username;
         console.log(gameurl);
