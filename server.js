@@ -46,7 +46,7 @@ const start = () => {
         let formatedLastName = '';
 
         if (msg.from.first_name) {
-            formatedName = msg.from.first_name.trim(/\s/g, '');
+            formatedName = msg.from.first_name.replace(/\s/g, '');
         }
 
         if (msg.from.last_name) {
