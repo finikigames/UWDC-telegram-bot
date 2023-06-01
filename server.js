@@ -7,6 +7,14 @@ const queries = {};
 const TelegramApi = require('node-telegram-bot-api')
 const bot = new TelegramApi(token, {polling: true})
 
+const GameStraightUrl = {
+    reply_markup: JSON.stringify( {
+        inline_keyboard: [
+            [{text: 'Прямая сыллка(для IOS)', callback_data: '/iosLink'}],
+        ]
+    })
+}
+
 const start = () => {
     bot.setMyCommands( [
         {command: '/start', description: 'Приветствие'},
@@ -21,7 +29,7 @@ const start = () => {
         }
 
         if (text === '/game') {
-            bot.sendMessage(chatId, `Удачи в игре, если ты выиграешь в рейтинге, то получишь приз!`);
+            bot.sendMessage(chatId, `Удачи в игре, если ты выиграешь в рейтинге, то получишь приз!`, GameStraightUrl);
             return bot.sendGame(msg.from.id, gameName);
         }
 
@@ -53,10 +61,13 @@ const start = () => {
             formatedLastName = msg.from.last_name.replace(/\s/g, '');
         }
         
-        
         let gameurl = gameUrl+"index.html?id="+msg.from.id+"0000"+"&first_name="+formatedName+"&last_name="+formatedLastName+"&username="+msg.from.username;
         console.log(gameurl);
         
+        if (data === '/iosLink') {
+            return bot.sendMessage(chatId, gameurl);
+        }
+
         bot.answerCallbackQuery(msg.id, {url: gameurl});
     })
 }
