@@ -41,7 +41,7 @@ const start = () => {
         const chatId = msg.message.chat.id;
         
         console.log(msg.data);
-        bot.sendMessage(chatId, `Да прибудет с тобой сила`);
+        bot.sendMessage(chatId, `Да пребудет с тобой сила`);
 
         console.log('---START-----USER_DATA_BLOCK-----START---');
         console.log('USER_ID - '+msg.from.id);
@@ -64,8 +64,9 @@ const start = () => {
         let gameurl = gameUrl+"index.html?id="+msg.from.id+"0000"+"&first_name="+formatedName+"&last_name="+formatedLastName+"&username="+msg.from.username;
         console.log(gameurl);
         
-        if (data === '/iosLink') {
-            return bot.sendMessage(chatId, gameurl);
+        if (data == "/iosLink") {
+            await bot.sendMessage(chatId, gameurl);
+            return;
         }
 
         bot.answerCallbackQuery(msg.id, {url: gameurl});
