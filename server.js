@@ -42,21 +42,6 @@ const start = () => {
     })
 
     bot.on('callback_query', msg => {
-        var found = false;
-        for(var i = 0; i < queries.length; i++) {
-            if (queries[i] == msg) {
-                found = true;
-                break;
-            }
-        }
-
-        if (found) {
-            bot.sendMessage(chatId, `Спасибо за игру. Приходи 03.06.23 на конференцию UWDC. В 12:40 на стенде Infinnity Solutions подведем итоги и вручим долгожданные призы игрокам, вошедшим в топ–3. 
-
-            Подписывайся на телеграмм-канал о работе в Infinnity Solutions. Делимся профессиональным опытом, рассказываем о жизни и работе наших команд, открытых вакансиях и новостях.
-            
-            P.S. Это первое и единственное сообщение от нас, обещаем не спамить 😌`);
-        }
         queries[msg.id] = msg;
         const chatId = msg.message.chat.id;
         
@@ -84,7 +69,7 @@ const start = () => {
         console.log(gameurl);
         
         if (msg.data === '/iosLink') {
-            return bot.sendMessage(chatId, `[Ссылка](${gameurl})`);
+            return bot.sendMessage(chatId, `<a href="${gameurl}">Ссылка</a>`, {parse_mode: 'HTML'});
         }
 
         bot.answerCallbackQuery(msg.id, {url: gameurl});
