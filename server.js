@@ -40,9 +40,9 @@ const start = () => {
 
         console.log('---START-----USER_DATA_BLOCK-----START---');
         console.log('USER_ID - '+msg.from.id);
-        console.log('USER_NAME - '+msg.from.id);
-        console.log('USER_LAST_NAME - '+msg.from.id);
-        console.log('USER_USERNAME - '+msg.from.id);
+        console.log('USER_NAME - '+formatedName);
+        console.log('USER_LAST_NAME - '+formatedLastName);
+        console.log('USER_USERNAME - '+msg.from.username);
         console.log('---END-----USER_DATA_BLOCK-----END---');
         
         let gameurl = gameUrl+"index.html?id="+msg.from.id+"0000"+"&first_name="+formatedName+"&last_name="+formatedLastName+"&username="+msg.from.username;
