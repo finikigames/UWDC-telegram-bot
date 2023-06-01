@@ -15,7 +15,7 @@ const GameStraightUrl = {
     })
 }
 
-const start = async () => {
+const start = () => {
     bot.setMyCommands( [
         {command: '/start', description: 'Приветствие'},
         {command: '/game', description: 'Отобразить игру'},
@@ -34,7 +34,7 @@ const start = async () => {
         }
 
         if (text === '/game') {
-            await bot.sendGame(msg.from.id, gameName);
+            bot.sendGame(msg.from.id, gameName);
             return bot.sendMessage(chatId, `Удачи в игре, если ты выиграешь в турнире, то получишь приз!`, GameStraightUrl);
         }
 
