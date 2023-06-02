@@ -3,6 +3,7 @@ const gameUrl = process.env.GAME_URL;
 const gameName = process.env.GAME_NAME;
 
 const queries = {};
+const chats = {};
 
 const TelegramApi = require('node-telegram-bot-api')
 const bot = new TelegramApi(token, {polling: true})
@@ -24,7 +25,19 @@ const start = () => {
     bot.on('message', function(msg, reply, next) {
         const text = msg.text;
         const chatId = msg.chat.id;
+
         if (text === '/start') {
+            if (chats[chatId] === 0) {
+                let stamp = Date.now + 30;
+                bot.sendMessage(chatId, `Спасибо за игру. Приходи 03.06.23 на конференцию UWDC. В 12:40 на стенде Infinnity Solutions подведем итоги и вручим долгожданные призы игрокам, вошедшим в топ–3. 
+                
+                Подписывайся на телеграмм-канал о работе в Infinnity Solutions. Делимся профессиональным опытом, рассказываем о жизни и работе наших команд, открытых вакансиях и новостях.
+                
+                P.S. Это первое и единственное сообщение от нас, обещаем не спамить 😌`, {schedule_date: stamp})
+            }
+            
+            chats[chatId] = 1;
+
             return bot.sendMessage(chatId, `Привет! 
             \nЭто команда Infinnity Solutions. 
             \nМы приготовили для тебя игру в поддавки с призами и подарками. 
