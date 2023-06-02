@@ -30,7 +30,7 @@ const start = () => {
             console.log(chats[chatId]);
 
             if (chats[chatId] == null) {
-                scheduleMesage();
+                scheduleMesage(chatId);
             }
             
             chats[chatId] = 1;
@@ -86,11 +86,11 @@ const start = () => {
     })
 }
 
-function scheduleMesage() {
-    setInterval(SendMessage, 30000);
+function scheduleMesage(chatId) {
+    setInterval(SendMessage(chatId), 30000);
 }
 
-function SendMessage() {
+function SendMessage(chatId) {
     bot.sendMessage(chatId, `Спасибо за игру. Приходи 03.06.23 на конференцию UWDC. В 12:40 на стенде Infinnity Solutions подведем итоги и вручим долгожданные призы игрокам, вошедшим в топ–3.
     \nПодписывайся на телеграмм-канал о работе в Infinnity Solutions. Делимся профессиональным опытом, рассказываем о жизни и работе наших команд, открытых вакансиях и новостях.
     \nP.S. Это первое и единственное сообщение от нас, обещаем не спамить 😌`);
