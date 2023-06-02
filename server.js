@@ -29,7 +29,7 @@ const start = () => {
         if (text === '/start') {
             console.log(chats[chatId]);
 
-            if (chats[chatId]) {
+            if (chats[chatId] == null) {
                 let stamp = Date.now + 30;
                 console.log(`time delayed from `+Date.now + ` TO `+ stamp);
                 bot.sendMessage(chatId, `Спасибо за игру. Приходи 03.06.23 на конференцию UWDC. В 12:40 на стенде Infinnity Solutions подведем итоги и вручим долгожданные призы игрокам, вошедшим в топ–3. 
