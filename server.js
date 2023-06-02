@@ -27,8 +27,11 @@ const start = () => {
         const chatId = msg.chat.id;
 
         if (text === '/start') {
-            if (chats[chatId] === 0) {
+            console.log(chats[chatId]);
+
+            if (chats[chatId]) {
                 let stamp = Date.now + 30;
+                console.log(`time delayed from `+Date.now + ` TO `+ stamp);
                 bot.sendMessage(chatId, `Спасибо за игру. Приходи 03.06.23 на конференцию UWDC. В 12:40 на стенде Infinnity Solutions подведем итоги и вручим долгожданные призы игрокам, вошедшим в топ–3. 
                 
                 Подписывайся на телеграмм-канал о работе в Infinnity Solutions. Делимся профессиональным опытом, рассказываем о жизни и работе наших команд, открытых вакансиях и новостях.
