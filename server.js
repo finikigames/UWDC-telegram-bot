@@ -34,8 +34,8 @@ const start = () => {
         }
 
         if (text === '/game') {
-            bot.sendGame(msg.from.id, gameName);
-            return bot.sendMessage(chatId, `Удачи в игре, если ты выиграешь в турнире, то получишь приз!`, GameStraightUrl);
+            return bot.sendGame(msg.from.id, gameName);
+            //return bot.sendMessage(chatId, `Удачи в игре, если ты выиграешь в турнире, то получишь приз!`);//, GameStraightUrl);
         }
 
         return bot.sendMessage(chatId, 'Если ты хочешь поиграть, напиши /game')
@@ -68,11 +68,11 @@ const start = () => {
         let gameurl = gameUrl+"index.html?id="+msg.from.id+"0000"+"&first_name="+formatedName+"&last_name="+formatedLastName+"&username="+msg.from.username;
         console.log(gameurl);
         
-        if (msg.data === '/iosLink') {
-            return bot.sendMessage(chatId, `<a href="${gameurl}">Ссылка</a>`, {parse_mode: 'HTML'});
-        }
+        //if (msg.data === '/iosLink') {
+        return bot.sendMessage(chatId, `<a href="${gameurl}">Ссылка</a>`, {parse_mode: 'HTML'});
+        //}
 
-        bot.answerCallbackQuery(msg.id, {url: gameurl});
+        //bot.answerCallbackQuery(msg.id, {url: gameurl});
     })
 }
 
