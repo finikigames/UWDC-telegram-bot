@@ -4,8 +4,8 @@ const gameName = process.env.GAME_NAME;
 
 const queries = {};
 const chats = {};
-const endTournamentStamp = parseFloat(process.env.END_STAMP);
-const byeMessageStamp = parseFloat(process.env.BYE_STAMP);
+const endTournamentStamp = process.env.END_STAMP;
+const byeMessageStamp = process.env.BYE_STAMP;
 
 const TelegramApi = require('node-telegram-bot-api')
 const bot = new TelegramApi(token, {polling: true})
@@ -80,16 +80,17 @@ const start = () => {
 
 function scheduleMesage(chatId) {
     let nowStamp = Date.now();
-    let awaitTime = endTournamentStamp - nowStamp;
+    let endStamp = parseInt(endTournamentStamp);
+    let awaitTime = endStamp - nowStamp;
     if (awaitTime > 0) {
         setTimeout(function() {SendMessage(chatId);}, awaitTime);
     }
     console.log("NOW STAMP is "+nowStamp+" await for "+awaitTime+" in milliseconds");
 
-
-    let awaitByeTime = byeMessageStamp - nowStamp;
+    let byeStamp = parseInt(byeMessageStamp);
+    let awaitByeTime = byeStamp - nowStamp;
     if (awaitByeTime > 0) {
-        setTimeout(function() {SendByeMessage(chatId);}, awaitTime);
+        setTimeout(function() {SendByeMessage(chatId);}, awaitByeTime);
     }
     console.log("NOW STAMP is "+nowStamp+" await for "+awaitByeTime+" in milliseconds");
 }
