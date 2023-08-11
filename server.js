@@ -4,8 +4,8 @@ const gameName = process.env.GAME_NAME;
 
 const queries = {};
 const chats = {};
-const endTournamentStamp = process.env.END_STAMP;
-const byeMessageStamp = process.env.BYE_STAMP;
+const endTournamentStamp = parseNumber(process.env.END_STAMP);
+const byeMessageStamp = parseNumber(process.env.BYE_STAMP);
 
 const TelegramApi = require('node-telegram-bot-api')
 const bot = new TelegramApi(token, {polling: true})
