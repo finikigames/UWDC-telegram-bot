@@ -8,3 +8,5 @@ services:
       - TOKEN=${TOKEN}
       - GAME_URL=${GAME_URL}
       - GAME_NAME=${GAME_NAME}
+      - END_STAMP=${END_STAMP}
+      - BYE_STAMP=${BYE_STAMP}
