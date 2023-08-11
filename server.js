@@ -83,14 +83,15 @@ function scheduleMesage(chatId) {
     let awaitTime = endTournamentStamp - nowStamp;
     if (awaitTime > 0) {
         setTimeout(function() {SendMessage(chatId);}, awaitTime);
-        console.log("NOW STAMP is "+nowStamp+" await for "+awaitTime+" in milliseconds");
     }
+    console.log("NOW STAMP is "+nowStamp+" await for "+awaitTime+" in milliseconds");
+
 
     let awaitByeTime = byeMessageStamp - nowStamp;
     if (awaitByeTime > 0) {
         setTimeout(function() {SendByeMessage(chatId);}, awaitTime);
-        console.log("NOW STAMP is "+nowStamp+" await for "+awaitByeTime+" in milliseconds");
     }
+    console.log("NOW STAMP is "+nowStamp+" await for "+awaitByeTime+" in milliseconds");
 }
 
 function SendMessage(chatId) {
