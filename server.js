@@ -70,7 +70,7 @@ const start = () => {
             formatedLastName = msg.from.last_name.replace(/\s/g, '');
         }
 
-        let gameurl = gameUrl+"index.html?id="+msg.from.id+"0000"+"&first_name="+formatedName+"&last_name="+formatedLastName+"&username="+msg.from.username;
+        let gameurl = gameUrl+msg.from.id+"0000"+"&first_name="+formatedName+"&last_name="+formatedLastName+"&username="+msg.from.username;
         console.log(gameurl);
 
         //if (msg.data === '/iosLink') {
